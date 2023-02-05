@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 
 from collections import OrderedDict
 
@@ -23,7 +23,6 @@ log = Log()
 @pytest.mark.parametrize("auto_retry", [False, True])
 @pytest.mark.parametrize("raise_exception", [False])
 def test_all_functions(multithread, heartbeat, auto_retry, raise_exception):
-
     api = TdxHq_API(multithread=multithread, heartbeat=heartbeat,
                     auto_retry=auto_retry, raise_exception=raise_exception)
     with api.connect(ip="119.147.212.81", time_out=60):
@@ -125,7 +124,7 @@ def test_all_functions(multithread, heartbeat, auto_retry, raise_exception):
         assert len(data) > 0
 
 
-def test_raise_excepiton():
+def test_raise_exception():
     api = TdxHq_API(raise_exception=True)
     with pytest.raises((socket.timeout, TdxConnectionError)):
         with api.connect('114.114.114.114'):

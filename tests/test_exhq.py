@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 
 import pytest
 from pytdx.errors import TdxFunctionCallError, TdxConnectionError
@@ -15,12 +15,10 @@ class Log(object):
 
 log = Log()
 
-
 test_server_ip = "112.74.214.43"
 
 
 def test_all_functions():
-
     symbol_params = [
         [47, "IF1709"],
         [8, "10000889"],
