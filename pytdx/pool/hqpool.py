@@ -3,15 +3,14 @@ from pytdx.log import DEBUG, log
 from functools import partial
 import time
 
-# 调用单个接口，重试次数，超过次数则不再重试
-DEFAULT_API_CALL_MAX_RETRY_TIMES = 20
-# 重试间隔的休眠时间
-DEFAULT_API_RETRY_INTERVAL = 0.2
 
+## 调用单个接口，重试次数，超过次数则不再重试
+DEFAULT_API_CALL_MAX_RETRY_TIMES = 20
+## 重试间隔的休眠时间
+DEFAULT_API_RETRY_INTERVAL = 0.2
 
 class TdxHqApiCallMaxRetryTimesReachedException(Exception):
     pass
-
 
 class TdxHqPool_API(object):
     """
@@ -38,6 +37,7 @@ class TdxHqPool_API(object):
         self.api_call_max_retry_times = DEFAULT_API_CALL_MAX_RETRY_TIMES
         self.api_call_retry_times = 0
         self.api_retry_interval = DEFAULT_API_RETRY_INTERVAL
+
 
         # 对hq_cls 里面的get_系列函数进行反射
         log.debug("perform_reflect")
@@ -78,7 +78,7 @@ class TdxHqPool_API(object):
             new_api_ip = None
             if self.hot_failover_api:
                 new_api_ip = self.hot_failover_api.ip
-                log.info("api call from init client (ip=%s) err, perform rotate to (ip =%s)..." % (old_api_ip, new_api_ip))
+                log.info("api call from init client (ip=%s) err, perform rotate to (ip =%s)..." %(old_api_ip, new_api_ip))
                 self.api.disconnect()
                 self.api = self.hot_failover_api
             log.info("retry times is " + str(self.api_call_max_retry_times))
@@ -139,13 +139,13 @@ class TdxHqPool_API(object):
 
 
 if __name__ == '__main__':
+
     from pytdx.hq import TdxHq_API
     from pytdx.pool.ippool import AvailableIPPool
     from pytdx.config.hosts import hq_hosts
     import random
     import logging
     import pprint
-
     log.setLevel(logging.DEBUG)
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
@@ -173,3 +173,6 @@ if __name__ == '__main__':
         ret = api.get_xdxr_info(0, '000001')
         print("send api call done")
         pprint.pprint(ret)
+
+
+
