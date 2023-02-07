@@ -101,7 +101,7 @@ class BaseParser(object):
         else:
             head_buf = self.client.recv(self.rsp_header_len)
             if DEBUG:
-                log.debug("recv head_buf:" + str(head_buf)  + " |len is :" + str(len(head_buf)))
+                log.debug("recv head_buf:" + str(head_buf)  + " |len is :" + str(len(head_buf))+ " |rsp_header_len :" + str(self.rsp_header_len))
             if len(head_buf) == self.rsp_header_len:
                 self.client.recv_pkg_num += 1
                 self.client.recv_pkg_bytes += self.rsp_header_len
